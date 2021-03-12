@@ -1,0 +1,26 @@
+{
+  "name": "rainbows-test",
+  "version": "1.0.0",
+  "description": "colorss",
+  "main": "rainbow.js",
+  "scripts": {
+    "test": "echo \"nao ha teste =(\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Reydesu/nodejs-book.git"
+  },
+  "keywords": [
+    "colors",
+    "example"
+  ],
+  "author": "eu 0_0",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Reydesu/nodejs-book/issues"
+  },
+  "homepage": "https://github.com/Reydesu/nodejs-book#readme",
+  "dependencies": {
+    "colors": "^1.4.0"
+  }
+}
