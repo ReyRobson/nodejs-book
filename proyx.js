@@ -18,6 +18,6 @@ app.use('/mostrar', createProxyMiddleware({
     target: API_SERVICE_URL2
 }))
 
-app.listen(3012, () =>{
+app.listen(3090, () =>{
     console.log('running in 3012')
 })
