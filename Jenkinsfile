@@ -4,8 +4,10 @@ pipeline{
         stage('git'){
             checkout scm
         }
-        stage('build'){
-            sh 'echo hello world'
+        stage('stage 1'){
+            steps{
+                echo 'hello world'
+            }
         }
     }
 }
