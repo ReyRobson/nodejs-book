@@ -1,10 +1,16 @@
 {
   "name": "rainbows-test",
+  "jest": {
+    "testResultsProcessor": "jest-junit"
+  },
   "version": "1.0.0",
   "description": "colorss",
   "main": "rainbow.js",
   "scripts": {
-    "test": "echo \"nao ha teste =(\""
+    "UniTest": "jest -- UniTest --maxworkers=25%",
+    "IntegratedTest": "jest -- IntegratedTest --maxworkers=25%",
+    "UniTest:ci": "jest -- UniTest --runInBand --ci",
+    "IntegratedTest:ci": "jest -- IntegratedTest --runInBand --ci"
   },
   "repository": {
     "type": "git",
@@ -27,5 +33,10 @@
     "express-http-proxy": "^1.6.2",
     "fs": "0.0.1-security",
     "http-proxy-middleware": "^1.1.0"
+  },
+  "devDependencies": {
+    "jest": "^26.6.3",
+    "jest-junit": "^12.0.0",
+    "supertest": "^6.1.3"
   }
 }
