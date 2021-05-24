@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="jest tests" tests="1" failures="0" errors="0" time="4.534">
-  <testsuite name="Test get method" errors="0" failures="0" skipped="0" timestamp="2021-05-24T11:37:21" time="2.484" tests="1">
-    <testcase classname="Test get method It should response the GET method" name="Test get method It should response the GET method" time="0.039">
+<testsuites name="jest tests" tests="1" failures="0" errors="0" time="3.26">
+  <testsuite name="Test numbers" errors="0" failures="0" skipped="0" timestamp="2021-05-24T11:41:25" time="1.234" tests="1">
+    <testcase classname="Test numbers Verify if a number was passed" name="Test numbers Verify if a number was passed" time="0.002">
     </testcase>
   </testsuite>
 </testsuites>
