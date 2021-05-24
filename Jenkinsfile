@@ -10,13 +10,13 @@ pipeline{
             steps{
                 sh 'npm i'
                 sh 'npm run UniTest:ci'
-                junit checksName: 'Unit Test', testResults: 'junit.xml'
+                junit checksName: 'Unit Test', testResults: 'test-results.xml'
             }
         }
         stage('IntegrationTest'){
             steps{
                 sh 'npm run IntegratedTest:ci'
-                junit checksName: 'Integration Test', testResults: 'jintegrated.xml'
+                junit checksName: 'Integration Test', testResults: 'test-results.xml'
             }
         }
     }
