@@ -7,10 +7,15 @@ pipeline{
             }
         }
         stage('code analysis'){
-            def scannerHome = tool 'sonar_dir'
-            withSonarQubeEnv('sonar-server')
-                sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=nodejs-book -Dsonar.sources=."
+            steps{
+                script{
+                    def scannerHome = tool 'sonar_dir'
+                    withSonarQubeEnv("sonar-server"){
+                        sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=nodejs-book -Dsonar.sources=."
+                    }
+                }
             }
+        }
         stage('UnitTest'){
             steps{
                 sh 'npm i'
@@ -34,7 +39,7 @@ pipeline{
         }
         stage('PerformanceTest'){
             steps{
-                './apache-jmeter-5.3/bin/jmeter -Jjmeter.save.saveservice.output_format=xml -n -t /jmeter/JMeter.jmx -l JMeter.jtl'
+                sh './apache-jmeter-5.3/bin/jmeter -Jjmeter.save.saveservice.output_format=xml -n -t /jmeter/JMeter.jmx -l JMeter.jtl'
             }
         }
     }
