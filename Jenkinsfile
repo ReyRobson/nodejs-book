@@ -31,7 +31,7 @@ pipeline{
         }
         stage('AcceptanceTest'){
             steps{
-                sh 'docker-compose up -f selenium/docker-compose.yml -d'
+                sh 'docker-compose -f selenium/docker-compose.yml up -d'
                 sh 'npm run AcceptanceTest:ci'
                 sh 'docker-compose down -f selenium/docker-compose.yml'
                 junit checksName: 'Acceptance Test', testResults: 'Test-results.xml'
@@ -46,7 +46,8 @@ pipeline{
     post{
         failure{
             sh 'echo terminou em erro'
-        }
+            sh 'docker-compose down -f selenium/docker-compose.yml'
+        }   
         success{
             sh 'echo terminou em sucesso'
         }
