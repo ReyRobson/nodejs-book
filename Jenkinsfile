@@ -4,7 +4,7 @@ def sendTelegram(message) {
     string(credentialsId: 'telegramChatId', variable: 'CHAT_ID')]) {
         response = httpRequest (consoleLogResponseBody: true,
                 contentType: 'APPLICATION_JSON',
-                httpMode: 'GET',
+                httpMode: 'POST',
                 url: "https://api.telegram.org/bot$TOKEN/sendMessage?text=$encodedMessage&chat_id=$CHAT_ID&parse_mode=html&disable_web_page_preview=true",
                 validResponseCodes: '200')
         return response
@@ -17,6 +17,11 @@ pipeline{
         stage('git'){
             steps{
                 checkout scm
+            }
+        }
+        stage('aviso'){
+            steps{
+                sendTelegram("pipeline ${env.JOB_NAME} [${env.BUILD_NUMBER}] começou")
             }
         }
         stage('code analysis'){
