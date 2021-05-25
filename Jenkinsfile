@@ -22,7 +22,6 @@ pipeline{
         stage('code analysis'){
             steps{
                 script{
-                    sendTelegram("pipeline ${env.JOB_NAME} [${env.BUILD_NUMBER}] começou")
                     def scannerHome = tool 'sonar_dir'
                     withSonarQubeEnv("sonar-server"){
                         sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=nodejs-book -Dsonar.sources=."
