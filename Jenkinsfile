@@ -1,16 +1,3 @@
-def sendTelegram(message) {
-    def encodedMessage = URLEncoder.encode(message, "UTF-8")
-    withCredentials([string(credentialsId: 'telegramToken', variable: 'TOKEN'),
-    string(credentialsId: 'telegramChatId', variable: 'CHAT_ID')]) {
-        response = httpRequest (consoleLogResponseBody: true,
-                contentType: 'APPLICATION_JSON',
-                httpMode: 'POST',
-                url: "https://api.telegram.org/bot$TOKEN/sendMessage?text=$encodedMessage&chat_id=$CHAT_ID&parse_mode=html&disable_web_page_preview=true",
-                validResponseCodes: '200')
-        return response
-        }
-    }
-
 pipeline{
     agent any
     stages{
@@ -19,9 +6,18 @@ pipeline{
                 checkout scm
             }
         }
-        stage('aviso'){
-            steps{
-                sendTelegram("pipeline ${env.JOB_NAME} [${env.BUILD_NUMBER}] começou")
+        stage(‘Push Notification’) {
+            steps {
+                script{
+                    withCredentials([string(credentialsId: ‘telegramToken’, variable: ‘TOKEN’),
+                    string(credentialsId: ‘telegramChatId’, variable: ‘CHAT_ID’)]) {
+                    sh """"
+                    curl -s -X POST https://api.telegram.org/bot${TOKEN}/sendMessage -d chat_id=${CHAT_ID} -d parse_mode="HTML" -d text="
+                    <b>Project</b> : test_suite \
+                    <b>pipeline</b>:  comecou\
+                    """"
+                    }
+                }
             }
         }
         stage('code analysis'){
