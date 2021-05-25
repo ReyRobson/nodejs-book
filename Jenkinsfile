@@ -11,9 +11,13 @@ def sendTelegram(message) {
 pipeline{
     agent any
     stages{
-        stage('git'){
+        stage('aviso'){
             steps{
                 sendTelegram("pipeline ${env.JOB_NAME} [${env.BUILD_NUMBER}] começou")
+            }
+        }
+        stage('git'){
+            steps{
                 checkout scm
             }
         }
