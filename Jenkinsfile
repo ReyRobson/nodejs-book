@@ -19,13 +19,9 @@ pipeline{
                 checkout scm
             }
         }
-        stage('aviso'){
-            steps{
-                sendTelegram("pipeline começou")
-            }
-        }
         stage('code analysis'){
             steps{
+                sendTelegram("pipeline ${env.JOB_NAME} [${env.BUILD_NUMBER}] começou")
                 script{
                     def scannerHome = tool 'sonar_dir'
                     withSonarQubeEnv("sonar-server"){
