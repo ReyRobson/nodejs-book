@@ -21,7 +21,7 @@ pipeline{
         }
         stage('aviso'){
             steps{
-                sendTelegram("pipeline ${env.JOB_NAME} [${env.BUILD_NUMBER}] começou")
+                sendTelegram("pipeline começou")
             }
         }
         stage('code analysis'){
