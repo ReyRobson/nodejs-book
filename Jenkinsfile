@@ -1,8 +1,19 @@
+def sendTelegram(message) {
+    def encodedMessage = URLEncoder.encode(message, "UTF-8")
+        response = httpRequest (consoleLogResponseBody: true,
+                contentType: 'APPLICATION_JSON',
+                httpMode: 'GET',
+                url: "https://api.telegram.org/bot1727699220:AAHs8HH1OaBcI1wzj3oVTRi6JMoBH5UOPtY/sendMessage?text=$encodedMessage&chat_id=-544511860&parse_mode=html&disable_web_page_preview=true",
+                validResponseCodes: '200')
+        return response
+    }
+
 pipeline{
     agent any
     stages{
         stage('git'){
             steps{
+                sendTelegram("pipeline ${env.JOB_NAME} [${env.BUILD_NUMBER}] começou")
                 checkout scm
             }
         }
@@ -45,11 +56,11 @@ pipeline{
     }
     post{
         failure{
-            sh 'echo terminou em erro'
+            sendTelegram("pipeline ${env.JOB_NAME} [${env.BUILD_NUMBER}] terminou em erro. Favor verificar")
             sh 'docker-compose down -f selenium/docker-compose.yml'
         }   
         success{
-            sh 'echo terminou em sucesso'
+            sendTelegram("pipeline ${env.JOB_NAME} [${env.BUILD_NUMBER}] terminou com sucesso")
         }
     }
 }
