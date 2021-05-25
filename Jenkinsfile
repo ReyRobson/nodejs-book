@@ -6,7 +6,7 @@ pipeline{
                 checkout scm
             }
         }
-        stage(‘Push Notification’) {
+        stage('Push Notification') {
             steps {
                 script{
                     withCredentials([string(credentialsId: ‘telegramToken’, variable: ‘TOKEN’),
