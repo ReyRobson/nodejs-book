@@ -11,7 +11,7 @@ pipeline{
                 script{
                     withCredentials([string(credentialsId: 'telegramToken', variable: 'TOKEN'),
                     string(credentialsId: 'telegramChatId', variable: 'CHAT_ID')]) {
-                    sh "curl -s -X POST https://api.telegram.org/bot$TOKEN/sendMessage?text=$encodedMessage&chat_id=$CHAT_ID&parse_mode=html&disable_web_page_preview=true -d 'pipeline comecou'"
+                    sh "curl -s -X POST https://api.telegram.org/bot$TOKEN/sendMessage?&chat_id=$CHAT_ID&parse_mode=html&disable_web_page_preview=true -d 'pipeline comecou'"
                     }
                 }
             }
