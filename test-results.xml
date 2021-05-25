@@ -1,16 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="jest tests" tests="1" failures="1" errors="0" time="4.43">
-  <testsuite name="Test site" errors="0" failures="1" skipped="0" timestamp="2021-05-24T12:35:37" time="2.266" tests="1">
-    <testcase classname="Test site Verify site get" name="Test site Verify site get" time="0.027">
-      <failure>TypeError: driver.quit is not a function
-    at getsite (C:\Users\reinaldo.filho\Desktop\node-book\__tests__\AcceptanceTest.js:25:22)
-    at Object.&lt;anonymous&gt; (C:\Users\reinaldo.filho\Desktop\node-book\__tests__\AcceptanceTest.js:6:23)
-    at Object.asyncJestTest (C:\Users\reinaldo.filho\Desktop\node-book\node_modules\jest-jasmine2\build\jasmineAsyncInstall.js:106:37)
-    at C:\Users\reinaldo.filho\Desktop\node-book\node_modules\jest-jasmine2\build\queueRunner.js:45:12
-    at new Promise (&lt;anonymous&gt;)
-    at mapper (C:\Users\reinaldo.filho\Desktop\node-book\node_modules\jest-jasmine2\build\queueRunner.js:28:19)
-    at C:\Users\reinaldo.filho\Desktop\node-book\node_modules\jest-jasmine2\build\queueRunner.js:75:41
-    at processTicksAndRejections (internal/process/task_queues.js:97:5)</failure>
+<testsuites name="jest tests" tests="1" failures="0" errors="0" time="5.748">
+  <testsuite name="webdriver" errors="0" failures="0" skipped="0" timestamp="2021-05-25T14:39:01" time="3.485" tests="1">
+    <testcase classname="webdriver it performs a validation of the search box on the page" name="webdriver it performs a validation of the search box on the page" time="0.385">
     </testcase>
   </testsuite>
 </testsuites>
