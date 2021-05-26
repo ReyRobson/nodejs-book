@@ -8,7 +8,18 @@ pipeline{
         }
         stage('Push Notification') {
             steps {
-                    sh "curl -X POST      -H 'Content-Type: application/json'    -d '{'chat_id': '-544511860', 'text': 'pipeline has started', 'disable_notification': true}'    https://api.telegram.org/bot1727699220:AAHs8HH1OaBcI1wzj3oVTRi6JMoBH5UOPtY/sendMessage"
+                script{
+                        def encodedMessage = URLEncoder.encode("pipeline comecou", "UTF-8")
+
+                        withCredentials([string(credentialsId: 'telegramToken', variable: 'TOKEN'),
+                        string(credentialsId: 'telegramChatId', variable: 'CHAT_ID')]) {
+
+                        response = httpRequest (consoleLogResponseBody: true,
+                        contentType: 'APPLICATION_JSON',
+                        httpMode: 'GET',
+                        url: "https://api.telegram.org/bot$TOKEN/sendMessage?text=$encodedMessage&chat_id=$CHAT_ID&parse_mode=html&disable_web_page_preview=true",
+                        validResponseCodes: '200')
+                }
                 }
             }
         stage('code analysis'){
