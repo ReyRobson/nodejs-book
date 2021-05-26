@@ -1,4 +1,6 @@
-def encodedMessage = "pipeline comecou"
+def bot = { text -> sh "curl -s -X POST https://api.telegram.org/bot1727699220:AAHs8HH1OaBcI1wzj3oVTRi6JMoBH5UOPtY/sendMessage -d chat_id=-544511860 -d text='#${env.BUILD_ID} ${text}'" }
+
+
 pipeline{
     agent any
     stages{
@@ -9,12 +11,7 @@ pipeline{
         }
         stage('Push Notification') {
             steps {
-                script{
-                httpRequest (consoleLogResponseBody: true,
-                contentType: 'APPLICATION_JSON',
-                httpMode: 'GET',
-                url: "https://api.telegram.org/bot1727699220:AAHs8HH1OaBcI1wzj3oVTRi6JMoBH5UOPtY/sendMessage?text=${encodedMessage}&chat_id=-544511860&parse_mode=html&disable_web_page_preview=true")
-                }        
+                bot("build starting")      
             }
         }
         stage('code analysis'){
