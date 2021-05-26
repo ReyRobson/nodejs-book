@@ -9,9 +9,7 @@ pipeline{
         stage('Push Notification') {
             steps {
                 script{
-                    withCredentials([string(credentialsId: 'telegramToken', variable: 'TOKEN'),
-                    string(credentialsId: 'telegramChatId', variable: 'CHAT_ID')]) {
-                    sh "curl -X POST https://api.telegram.org/bot$TOKEN/sendMessage?&chat_id=$CHAT_ID -H 'Content-Type: application/json' -d '{pipeline: pipeline comecou}'"
+                    sh 'curl -X POST      -H "Content-Type: application/json"      -d '{"chat_id": "-544511860", "text": "pipeline has started", "disable_notification": true}'      https://api.telegram.org/bot1727699220:AAHs8HH1OaBcI1wzj3oVTRi6JMoBH5UOPtY/sendMessage'
                     }
                 }
             }
