@@ -11,7 +11,9 @@ pipeline{
         }
         stage('Push Notification') {
             steps {
-                bot("build starting")      
+                script{
+                    bot("build starting") 
+                }     
             }
         }
         stage('code analysis'){
