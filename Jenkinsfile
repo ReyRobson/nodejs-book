@@ -1,7 +1,5 @@
+def encodedMessage = "pipeline comecou"
 pipeline{
-    parameters{
-        string(name: 'encodedMessage', defaultValue: '')
-    }
     agent any
     stages{
         stage('git'){
@@ -12,9 +10,11 @@ pipeline{
         stage('Push Notification') {
             steps {
                 script{
-                    encodedMessage = "pipeline comecou"
-                }
-                sh 'curl -X POST https://api.telegram.org/bot1727699220:AAHs8HH1OaBcI1wzj3oVTRi6JMoBH5UOPtY/sendMessage?text=$encodedMessage&chat_id=-544511860&parse_mode=html&disable_web_page_preview=true'        
+                httpRequest (consoleLogResponseBody: true,
+                contentType: 'APPLICATION_JSON',
+                httpMode: 'GET',
+                url: "https://api.telegram.org/bot1727699220:AAHs8HH1OaBcI1wzj3oVTRi6JMoBH5UOPtY/sendMessage?text=${encodedMessage}&chat_id=-544511860&parse_mode=html&disable_web_page_preview=true")
+                }        
             }
         }
         stage('code analysis'){
